@@ -16,7 +16,6 @@ def day_03_v1(puzzle):
         second_index = get_max_index(batteries[max_index + 1 :]) + max_index + 1
 
         value = (10 * batteries[max_index]) + batteries[second_index]
-
         part_1 += value
 
     # Part 2

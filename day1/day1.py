@@ -1,6 +1,7 @@
 import timeit
 import cProfile
 
+
 def day_01_v1(puzzle):
     D = 50
 
@@ -36,7 +37,7 @@ def day_01_v2(puzzle):
         direction, dist = k[0], int(k[1:])
 
         positivity = 1
-        if direction == 'L':
+        if direction == "L":
             positivity = -1
 
         while dist != 0:
@@ -78,4 +79,8 @@ if __name__ == "__main__":
     time_taken_v2 = time_taken_v2 / n_runs
     print(time_taken_v2)
 
-    cProfile.run("timeit.timeit(lambda: day_01_v2(puzzle_in), number=n_runs)", filename="day1.profile", sort="cumtime")
+    cProfile.run(
+        "timeit.timeit(lambda: day_01_v2(puzzle_in), number=n_runs)",
+        filename="day1.profile",
+        sort="cumtime",
+    )

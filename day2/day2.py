@@ -1,5 +1,6 @@
 import math
 
+
 def check_invalid(s, n_splits=2):
     if len(s) % n_splits != 0:
         return False
@@ -10,12 +11,13 @@ def check_invalid(s, n_splits=2):
 
     for i in range(n_splits):
         start = i * split_len
-        end = (i+1) * split_len
+        end = (i + 1) * split_len
 
         if first != s[start:end]:
             return False
 
     return True
+
 
 def day_02_v1(puzzle):
     part_1_solution = 0
@@ -23,10 +25,10 @@ def day_02_v1(puzzle):
 
     ranges = "".join(puzzle).split(",")
 
-    ranges = [r.split('-') for r in ranges if '-' in r]
+    ranges = [r.split("-") for r in ranges if "-" in r]
 
     for lower, upper in ranges:
-        for n in range(int(lower), int(upper)+1):
+        for n in range(int(lower), int(upper) + 1):
             sn = str(n)
 
             if check_invalid(sn, n_splits=2):
@@ -34,7 +36,7 @@ def day_02_v1(puzzle):
                 part_2_solution += n
                 continue
 
-            for lensplit in range(3, len(sn)+1):
+            for lensplit in range(3, len(sn) + 1):
                 if len(sn) % lensplit != 0:
                     continue
 
@@ -77,7 +79,7 @@ def generate_divisor_list(len_max_upper_range):
 
     for n in range(len_max_upper_range + 1):
         divisors_list = []
-        for divisor in range(n-1, 0, -1):
+        for divisor in range(n - 1, 0, -1):
             if n % divisor == 0:
                 flag = True
                 for d in divisors_list:
@@ -87,11 +89,12 @@ def generate_divisor_list(len_max_upper_range):
                 if flag:
                     divisors_list.append(divisor)
 
-        if (n % 2 ==0) and (n // 2) in divisors_list:
-            divisors_list.remove(n//2)
+        if (n % 2 == 0) and (n // 2) in divisors_list:
+            divisors_list.remove(n // 2)
 
         divisors[n] = divisors_list
     return divisors
+
 
 def day_02_v2(puzzle):
     part_1_solution = 0
@@ -114,9 +117,9 @@ def day_02_v2(puzzle):
         len_lower = int(math.log10(lower) + 1)
         len_upper = int(math.log10(upper) + 1)
 
-        for base_range in range(len_lower-1, len_upper-1+1):
+        for base_range in range(len_lower - 1, len_upper - 1 + 1):
             starting_val = max(lower, 10**base_range)
-            ending_val = min(upper, 10**(base_range+1))
+            ending_val = min(upper, 10 ** (base_range + 1))
 
             len_n = int(math.log10(starting_val) + 1)
 

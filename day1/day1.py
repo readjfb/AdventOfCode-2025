@@ -1,7 +1,3 @@
-import timeit
-import cProfile
-
-
 def day_01_v1(puzzle):
     D = 50
 
@@ -62,25 +58,25 @@ if __name__ == "__main__":
     with open("AdventOfCode-2025/day1/day1_input.txt") as file:
         puzzle_in = [x.strip() for x in file.readlines()]
 
-    basic = day_01_v1(puzzle_in)
-    print(f"Part 1: {basic[0]}")
-    print(f"Part 2: {basic[1]}")
+    # basic = day_01_v1(puzzle_in)
+    # print(f"Part 1: {basic[0]}")
+    # print(f"Part 2: {basic[1]}")
 
     basic = day_01_v2(puzzle_in)
     print(f"Part 1: {basic[0]}")
     print(f"Part 2: {basic[1]}")
 
-    n_runs = 100
-    time_taken_v1 = timeit.timeit(lambda: day_01_v1(puzzle_in), number=n_runs)
-    time_taken_v1 = time_taken_v1 / n_runs
-    print(time_taken_v1)
+    # n_runs = 100
+    # time_taken_v1 = timeit.timeit(lambda: day_01_v1(puzzle_in), number=n_runs)
+    # time_taken_v1 = time_taken_v1 / n_runs
+    # print(time_taken_v1)
 
-    time_taken_v2 = timeit.timeit(lambda: day_01_v2(puzzle_in), number=n_runs)
-    time_taken_v2 = time_taken_v2 / n_runs
-    print(time_taken_v2)
+    # time_taken_v2 = timeit.timeit(lambda: day_01_v2(puzzle_in), number=n_runs)
+    # time_taken_v2 = time_taken_v2 / n_runs
+    # print(time_taken_v2)
 
-    cProfile.run(
-        "timeit.timeit(lambda: day_01_v2(puzzle_in), number=n_runs)",
-        filename="day1.profile",
-        sort="cumtime",
-    )
+    # cProfile.run(
+    #     "timeit.timeit(lambda: day_01_v2(puzzle_in), number=n_runs)",
+    #     filename="day1.profile",
+    #     sort="cumtime",
+    # )

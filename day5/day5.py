@@ -6,7 +6,7 @@ def day_05_v1(puzzle):
     ranges = parts[0].split("\n")
     ingredients = parts[1].split("\n")
 
-    ranges = [x.split('-') for x in ranges]
+    ranges = [x.split("-") for x in ranges]
     ranges = [(int(x[0]), int(x[1])) for x in ranges]
     ingredients = [int(x) for x in ingredients]
 
@@ -19,7 +19,7 @@ def day_05_v1(puzzle):
     # Part 2
     ranges_sorted = sorted(ranges, key=lambda x: x[0])
 
-    range_bottom = -float('inf')
+    range_bottom = -float("inf")
     while ranges_sorted:
         bot, top = ranges_sorted.pop(0)
 

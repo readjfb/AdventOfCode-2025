@@ -11,8 +11,9 @@ I'm uploading my solutions to each day here for my own sake! I'll be working in 
 My goal is to get each day to run in sub 1 second for parts 1 and 2 combined. If the parts are too different, I might pivot to 1s for part 1, and 1s for part 2.
 | Day  | Time (ms) | Time goal  | No AI use? |
 | ---: | :-------: | :--------: | :-------:|
-| **1**  | 2         |  ✅        | None        |
-| **2**  | 823       |  ✅        | None         |
+| **1**  | 2         |  ✅        | None    |
+| **2**  | 823       |  ✅        | None    |
 | **3**  |   4       |  ✅        | None    |
 | **4**  | 198       |  ✅        | None    |
 | **5**  | 3         |  ✅        | None    |
+| **6**  | 4         |  ✅        | None    |

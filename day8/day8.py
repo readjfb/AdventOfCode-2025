@@ -59,8 +59,7 @@ def day_08_v1(puzzle):
 
 def day_08_v2(puzzle):
     part_1, part_2 = 0, 0
-    coords = np.array([[int(y) for y in x.split(",")] for x in puzzle],
-                      dtype=float)
+    coords = np.array([[int(y) for y in x.split(",")] for x in puzzle], dtype=float)
 
     diffs = coords[:, None, :] - coords[None, :, :]
     distances_matrix = np.einsum("ijk,ijk->ij", diffs, diffs)
@@ -73,7 +72,8 @@ def day_08_v2(puzzle):
     adj_mat = np.zeros(pt_1_dist_mat.shape)
 
     full_ranking = np.unravel_index(
-        np.argsort(pt_1_dist_mat, axis=None)[:1000], shape=pt_1_dist_mat.shape
+        np.argpartition(pt_1_dist_mat, 1000, axis=None)[:1000],
+        shape=pt_1_dist_mat.shape,
     )
 
     adj_mat[full_ranking] = 1

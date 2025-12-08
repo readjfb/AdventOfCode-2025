@@ -1,5 +1,6 @@
 from collections import defaultdict, deque
 
+
 def day_07_v1(puzzle):
     part_1, part_2 = 0, 0
 
@@ -16,31 +17,31 @@ def day_07_v1(puzzle):
     while stack:
         curr_x, curr_y = stack.popleft()
 
-        if not (0<=curr_x < len_x and 0<=curr_y<len_y-1):
+        if not (0 <= curr_x < len_x and 0 <= curr_y < len_y - 1):
             continue
 
         num_ways_at_spot = num_ways[(curr_x, curr_y)]
 
         # Try moving downward
-        if puzzle[curr_y+1][curr_x] == '.':
-            if (curr_x, curr_y+1) not in processed:
-                stack.append((curr_x, curr_y+1))
-                processed.add((curr_x, curr_y+1))
-            num_ways[(curr_x, curr_y+1)] += num_ways_at_spot
+        if puzzle[curr_y + 1][curr_x] == ".":
+            if (curr_x, curr_y + 1) not in processed:
+                stack.append((curr_x, curr_y + 1))
+                processed.add((curr_x, curr_y + 1))
+            num_ways[(curr_x, curr_y + 1)] += num_ways_at_spot
             continue
 
-        if puzzle[curr_y+1][curr_x] == '^':
+        if puzzle[curr_y + 1][curr_x] == "^":
             part_1 += 1
 
-            num_ways[(curr_x+1, curr_y+1)] += num_ways_at_spot
-            if (curr_x+1, curr_y+1) not in processed:
-                stack.append((curr_x+1, curr_y+1))
-                processed.add((curr_x+1, curr_y+1))
+            num_ways[(curr_x + 1, curr_y + 1)] += num_ways_at_spot
+            if (curr_x + 1, curr_y + 1) not in processed:
+                stack.append((curr_x + 1, curr_y + 1))
+                processed.add((curr_x + 1, curr_y + 1))
 
-            num_ways[(curr_x-1, curr_y+1)] += num_ways_at_spot
-            if (curr_x-1, curr_y+1) not in processed:
-                stack.append((curr_x-1, curr_y+1))
-                processed.add((curr_x-1, curr_y+1))
+            num_ways[(curr_x - 1, curr_y + 1)] += num_ways_at_spot
+            if (curr_x - 1, curr_y + 1) not in processed:
+                stack.append((curr_x - 1, curr_y + 1))
+                processed.add((curr_x - 1, curr_y + 1))
             continue
         print("Unreachable State Reached")
 

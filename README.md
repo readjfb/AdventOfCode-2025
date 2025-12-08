@@ -10,12 +10,13 @@ I'm uploading my solutions to each day here for my own sake! I'll be working in 
 ## Times
 My goal is to get each day to run in sub 1 second on my laptop (M4 Pro) for parts 1 and 2 combined.
 
-| Day  | Time (ms) | Time goal  | No AI use? |
+| Day  | Time in ms* | Time goal  | No AI use? |
 | ---: | :-------: | :--------: | :-------:|
-| **1**  | 2       |  ✅        | None    |
-| **2**  | 823     |  ✅        | None    |
-| **3**  | 4       |  ✅        | None    |
-| **4**  | 198     |  ✅        | None    |
-| **5**  | 3       |  ✅        | None    |
-| **6**  | 4       |  ✅        | None    |
-| **7**  | 6       |  ✅        | None    |
+| **1**  | 2       |  ✅        | ✅    |
+| **2**  | 823     |  ✅        | ✅    |
+| **3**  | 4       |  ✅        | ✅    |
+| **4**  | 198     |  ✅        | ✅    |
+| **5**  | 3       |  ✅        | ✅    |
+| **6**  | 4       |  ✅        | ✅    |
+| **7**  | 6       |  ✅        | ✅    |
+| **8**  | 311     |  ✅        | ✅    |

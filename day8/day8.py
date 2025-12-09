@@ -88,11 +88,11 @@ def day_08_v2(puzzle):
     # Part 2
 
     # Which row has the highest minimum element, and in that row, which is it's lowest column?
-    max_element_of_mins = np.argmax(np.min(distances_matrix, axis=0))
-    min_distance_longest_row = np.argmin(distances_matrix[max_element_of_mins, :])
+    farthest_nearest_index = np.argmax(np.min(distances_matrix, axis=0))
+    nearest_in_farthest = np.argmin(distances_matrix[farthest_nearest_index, :])
 
-    x1 = coords[max_element_of_mins][0]
-    x2 = coords[min_distance_longest_row][0]
+    x1 = coords[farthest_nearest_index][0]
+    x2 = coords[nearest_in_farthest][0]
 
     part_2 = x1 * x2
     return int(part_1), int(part_2)

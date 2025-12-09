@@ -10,7 +10,8 @@ I'm uploading my solutions to each day here for my own sake! I'll be working in 
 ## Times
 My goal is to get each day to run in sub 1 second on my laptop (M4 Pro) for parts 1 and 2 combined.
 
-| Day  | Time in ms* | Time goal  | No AI use? |
+ \* If two times are listed, the first is the script runtime; the second is the runtime excluding kernel initialization, imports, and I/O
+| Day  | Time in ms * | Time goal  | No AI use? |
 | ---: | :-------: | :--------: | :-------:|
 | **1**  | 2       |  ✅        | ✅    |
 | **2**  | 823     |  ✅        | ✅    |
@@ -19,4 +20,5 @@ My goal is to get each day to run in sub 1 second on my laptop (M4 Pro) for part
 | **5**  | 3       |  ✅        | ✅    |
 | **6**  | 4       |  ✅        | ✅    |
 | **7**  | 6       |  ✅        | ✅    |
-| **8**  | 283     |  ✅        | ✅    |
+| **8**  | 125 - 12  |  ✅        | ✅    |
+| **8**  | 372  |  ✅        | ✅    |

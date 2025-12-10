@@ -4,9 +4,7 @@ import itertools
 import pyomo.environ as pyo
 
 
-def lp_solve(
-    toggles_matrix: np.ndarray, target: np.ndarray
-):
+def lp_solve(toggles_matrix: np.ndarray, target: np.ndarray):
     n_buttons, n_dims = toggles_matrix.shape
 
     model = pyo.ConcreteModel()
@@ -36,7 +34,9 @@ def lp_solve(
 
     model.sum_constraints = pyo.Constraint(model.J, rule=sum_constraint_rule)
 
-    model.obj = pyo.Objective(expr=pyo.quicksum(model.x[i] for i in model.I), sense=pyo.minimize)
+    model.obj = pyo.Objective(
+        expr=pyo.quicksum(model.x[i] for i in model.I), sense=pyo.minimize
+    )
 
     solver = pyo.SolverFactory("cplex_direct")
     result = solver.solve(model, tee=False)
@@ -44,7 +44,7 @@ def lp_solve(
     status = result.solver.status
     termination = result.solver.termination_condition
 
-    if (status != pyo.SolverStatus.ok) or termination != 'optimal':
+    if (status != pyo.SolverStatus.ok) or termination != "optimal":
         print(status, termination)
         return None
 
@@ -83,12 +83,14 @@ def day10_v1(puzzle):
         toggle_matrix = np.array(row_info["xors"], dtype=int)
         lights = row_info["lights"]
 
-        num_switches = len(row_info['xors'])
+        num_switches = len(row_info["xors"])
 
         solved = False
 
-        for N in range(1, num_switches+1):
-            comb = np.array(list(itertools.combinations(np.arange(num_switches), N)), dtype=int)
+        for N in range(1, num_switches + 1):
+            comb = np.array(
+                list(itertools.combinations(np.arange(num_switches), N)), dtype=int
+            )
             n_rows = comb.shape[0]
 
             possibilities = np.zeros((n_rows, num_switches), dtype=int)
@@ -106,10 +108,10 @@ def day10_v1(puzzle):
                 break
 
         # Part 2
-        jolt = row_info['jolt']
+        jolt = row_info["jolt"]
         sol, status = lp_solve(toggle_matrix, jolt)
 
-        if not all(sol@toggle_matrix == jolt):
+        if not all(sol @ toggle_matrix == jolt):
             print(status)
             print("asdfsdf")
         try:

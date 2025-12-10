@@ -62,7 +62,7 @@ def day_08_v2(puzzle):
     coords = np.array([[int(y) for y in x.split(",")] for x in puzzle], dtype=float)
 
     diffs = coords[:, None, :] - coords[None, :, :]
-    distances_matrix = np.sum(diffs ** 2)
+    distances_matrix = np.sum(diffs**2)
 
     np.fill_diagonal(distances_matrix, np.inf)
 

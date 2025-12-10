@@ -91,13 +91,13 @@ def day10_v1(puzzle):
             comb = np.array(list(itertools.combinations(np.arange(num_switches), N)), dtype=int)
             n_rows = comb.shape[0]
 
-            out = np.zeros((n_rows, num_switches), dtype=int)
+            possibilities = np.zeros((n_rows, num_switches), dtype=int)
 
             # Step 3: use advanced indexing to set 1s
             rows = np.arange(n_rows)[:, None]  # shape (n_rows, 1)
-            out[rows, comb] = 1
+            possibilities[rows, comb] = 1
 
-            for row in out:
+            for row in possibilities:
                 if all(((row @ toggle_matrix) % 2) == lights):
                     part_1 += N
                     solved = True
@@ -107,7 +107,7 @@ def day10_v1(puzzle):
 
         # Part 2
         jolt = row_info['jolt']
-        sol, status = lp_solve(toggle_matrix, jolt.copy())
+        sol, status = lp_solve(toggle_matrix, jolt)
 
         if not all(sol@toggle_matrix == jolt):
             print(status)

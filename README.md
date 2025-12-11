@@ -23,3 +23,4 @@ My goal is to get each day to run in sub 1 second on my laptop (M4 Pro) for part
 | **8**  | 125 - 12  |  ✅        | ✅    |
 | **9**  | 372  |  ✅        | ✅    |
 | **10**  | 970  |  ✅        | ✅    |
+| **11**  | 133  |  ✅        | ✅    |

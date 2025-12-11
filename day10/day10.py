@@ -3,7 +3,6 @@ import itertools
 
 import pyomo.environ as pyo
 
-
 def lp_solve(toggles_matrix: np.ndarray, target: np.ndarray):
     n_buttons, n_dims = toggles_matrix.shape
 
@@ -38,7 +37,8 @@ def lp_solve(toggles_matrix: np.ndarray, target: np.ndarray):
         expr=pyo.quicksum(model.x[i] for i in model.I), sense=pyo.minimize
     )
 
-    solver = pyo.SolverFactory("cplex_direct")
+    solver = pyo.SolverFactory("gurobi")
+    # solver = pyo.SolverFactory("cplex_direct")
     result = solver.solve(model, tee=False)
 
     status = result.solver.status
@@ -95,7 +95,6 @@ def day10_v1(puzzle):
 
             possibilities = np.zeros((n_rows, num_switches), dtype=int)
 
-            # Step 3: use advanced indexing to set 1s
             rows = np.arange(n_rows)[:, None]  # shape (n_rows, 1)
             possibilities[rows, comb] = 1
 

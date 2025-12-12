@@ -24,3 +24,5 @@ My goal is to get each day to run in sub 1 second on my laptop (M4 Pro) for part
 | **9**  | 372  |  ✅        | ✅    |
 | **10**  | 970  |  ✅        | ✅    |
 | **11**  | 133  |  ✅        | ✅    |
+| **12**  | 72  |  ✅        | ✅    |
+I really didn't deserve to get day 12; I basically just checked to see if the space could fit the boxes, wanted to see how many were eligible for solving with brute force and moving the boxes around, and apparently that was just the solution. Kinda a bummer that we didn't have to actually solve the problem, but it would have been hard

@@ -1,52 +1,6 @@
 import math
 
 
-def check_invalid(s, n_splits=2):
-    if len(s) % n_splits != 0:
-        return False
-
-    split_len = len(s) // n_splits
-
-    first = s[:split_len]
-
-    for i in range(n_splits):
-        start = i * split_len
-        end = (i + 1) * split_len
-
-        if first != s[start:end]:
-            return False
-
-    return True
-
-
-def day_02_v1(puzzle):
-    part_1_solution = 0
-    part_2_solution = 0
-
-    ranges = "".join(puzzle).split(",")
-
-    ranges = [r.split("-") for r in ranges if "-" in r]
-
-    for lower, upper in ranges:
-        for n in range(int(lower), int(upper) + 1):
-            sn = str(n)
-
-            if check_invalid(sn, n_splits=2):
-                part_1_solution += n
-                part_2_solution += n
-                continue
-
-            for lensplit in range(3, len(sn) + 1):
-                if len(sn) % lensplit != 0:
-                    continue
-
-                if check_invalid(sn, n_splits=lensplit):
-                    part_2_solution += n
-                    break
-
-    return (part_1_solution, part_2_solution)
-
-
 def check_invalid_v2(n, len_n, split_len):
     if len_n % split_len:
         return False
@@ -66,13 +20,7 @@ def generate_split_lens_list(len_max_upper_range):
     pruned list of divisors of n that can be used as candidate split sizes for
     repeating-digit blocks. It iterates over all proper divisors of n,
     keeping only those that are not redundant (i.e., not factors of
-    larger divisors).
-
-    Example- if n = 12, divisor 3 is pruned if 6 is already kept, since any
-    number repeating in 4-digit blocks would also satisfy 2 digt blocks
-
-    Also removes n/2 for even n to avoid redoing
-    the check done earlier on part 1.
+    larger divisors). Also ignores values of n//2, since that's checked in part 1
 
     For upper range 10, returns
     {0: [], 1: [], 2: [], 3: [1], 4: [], 5: [1], 6: [2], 7: [1], 8: [], 9: [3], 10: [2]}
@@ -99,54 +47,6 @@ def generate_split_lens_list(len_max_upper_range):
 
 def fast_len_n(n):
     return int(math.log10(n) + 1)
-
-
-def day_02_v2(puzzle):
-    part_1_solution = 0
-    part_2_solution = 0
-
-    ranges = "".join(puzzle).split(",")
-
-    ranges = [r.split("-") for r in ranges if "-" in r]
-
-    max_upper_range = max(ranges, key=lambda x: int(x[1]))[1]
-
-    len_max_upper_range = len(str(max_upper_range))
-
-    split_lens = generate_split_lens_list(len_max_upper_range)
-
-    for lower, upper in ranges:
-        # We don't need to check values < 10, since they can't repeat
-        lower = max(10, int(lower))
-        upper = int(upper)
-
-        # A marginally faster way of computing len(n)
-        len_lower = fast_len_n(lower)
-        len_upper = fast_len_n(upper)
-
-        # This loop allows checking 2 digit numbers, then 3 digit numbers
-        # Avoids recomputing len(n), which is surprisingly expensive
-        # Start the range lower than the lower len, since len(50) = 2,
-        # but 10^2 = 100
-        for candidate_len in range(len_lower - 1, len_upper):
-            starting_val = max(lower, 10**candidate_len)
-            ending_val = min(upper, 10 ** (candidate_len + 1))
-
-            len_n = fast_len_n(starting_val)
-
-            for n in range(starting_val, ending_val):
-                if check_invalid_v2(n, len_n, split_len=len_n // 2):
-                    if len_n % 2 == 0:
-                        part_1_solution += n
-                    part_2_solution += n
-                    continue
-
-                for split_len in split_lens[len_n]:
-                    if check_invalid_v2(n, len_n, split_len=split_len):
-                        part_2_solution += n
-                        continue
-
-    return part_1_solution, part_2_solution
 
 
 def day_02_v3(puzzle):
@@ -226,10 +126,6 @@ def day_02_v3(puzzle):
 if __name__ == "__main__":
     with open("AdventOfCode-2025/day2/day2_input.txt") as file:
         puzzle_in = [x.strip() for x in file.readlines()]
-
-    # basic = day_02_v1(puzzle_in)
-    # print(f"Part 1: {basic[0]}")
-    # print(f"Part 2: {basic[1]}")
 
     basic = day_02_v3(puzzle_in)
     print(f"Part 1: {basic[0]}")
